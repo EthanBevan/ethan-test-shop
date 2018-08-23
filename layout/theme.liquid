@@ -112,6 +112,8 @@
         <div class="wrapper">
       {% endunless %}
         {{ content_for_layout }}
+        {%- section 'footer' -%}
+        {{- 'jquery-2.2.3.min.js' | asset_url | script_tag -}}
       {% unless template.name == "index" or template == "collection.image" %}
         </div>
       {% endunless %}

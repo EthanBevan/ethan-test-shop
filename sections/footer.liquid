@@ -206,44 +206,36 @@
 
 {% schema %}
 {
-  "name": {
-    "de": "Fußzeile",
-    "en": "Footer",
-    "es": "Pie de página",
-    "fr": "Pied de page",
-    "it": "Footer",
-    "ja": "フッター",
-    "pt-BR": "Rodapé"
+  "name": "Footer",
+  "blocks": [
+  {
+
+    "type": "link_list",
+    "name": "Navigation menu",
+    "settings": [
+      {
+        "id": "link_list",
+        "type": "link_list",
+        "label": "Navigation menu"
+      }
+    ]
   },
-  "settings": [
+
     {
-      "type": "link_list",
-      "id": "footer_link_list",
-      "label": {
-        "de": "Fußzeilenmenü",
-        "en": "Footer menu",
-        "es": "Menú inferior",
-        "fr": "Menu pied de page",
-        "it": "Menu footer",
-        "ja": "フッターメニュー",
-        "pt-BR": "Menu do rodapé"
-      },
-      "default": "footer"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": {
-        "de": "Zahlungssymbole anzeigen",
-        "en": "Show payment icons",
-        "es": "Mostrar iconos de pago",
-        "fr": "Afficher les icônes de paiement",
-        "it": "Mostra le icone di pagamento",
-        "ja": "支払いアイコンを表示する",
-        "pt-BR": "Exibir ícones de pagamento"
-      },
-      "default": true
+      "type": "payment_icons",
+      "name": "Payment icons"
     }
   ]
 }
 {% endschema %}
+
+<footer>
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when 'link_list' -%}
+      {%- include 'footer-block-link-list' -%}
+    {%- when 'payment_icons' -%}
+      {%- include 'footer-block-payment-icons' -%}
+      {%- endcase -%}
+    {%- endfor -%}
+</footer>

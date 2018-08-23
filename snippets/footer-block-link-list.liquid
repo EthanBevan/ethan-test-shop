@@ -1,0 +1,8 @@
+
+{% assign footer_menu = block.settings.link_list %}
+
+<ul>
+{% for link in linklists[footer_menu].links %}
+  <li><a href= "{{ link.url }}">{{ link.title }}</a></li>
+{% endfor %}
+</ul>
